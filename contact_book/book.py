@@ -1,5 +1,4 @@
 from .person import Person
-
 from time import time
 
 
@@ -15,9 +14,12 @@ def decorator_for_time(func):
 class Book:
 
     @decorator_for_time
-    def __init__(self):
+    def __init__(self, filename):
         self.persons = []
-        self.file = open('new_file', 'r+')
+        self.filename = filename
+        self.file = open(self.filename, 'a+')
+        self.file.close()
+        self.file = open(self.filename, 'r+')
         content = self.file.read()
         self.file.close()
         for line in content.split('\n'):
@@ -47,7 +49,7 @@ class Book:
 
     @decorator_for_time
     def write_file(self):
-        self.file = open('new_file', 'w')
+        self.file = open(self.filename, 'w')
         if len(self.persons) != 0:
             for p in self.persons:
                 self.file.write(f'{p.name} {p.surname} {p.mail} {p.phone} {p.work}\n')

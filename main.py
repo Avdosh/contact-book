@@ -1,6 +1,6 @@
 from contact_book import Book
 
-b = Book()
+b = Book('new_file')
 
 while True:
     operation = input('Выберите операцию:\na - добавить запись\nd - удалить запись\ns - показать запись\ne - выход\n')
